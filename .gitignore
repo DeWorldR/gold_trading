@@ -1,0 +1,47 @@
+# ─── Secrets — NEVER commit ───────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# ─── Runtime artifacts (regenerated on every run) ─────────────────────
+gold_trading.log
+cycle_log.jsonl
+daily_summary.md
+sessions/
+fix_validation_rerun.log
+verification_run.log
+
+# ─── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# ─── Virtual environments ─────────────────────────────────────────────
+venv/
+env/
+.venv/
+ENV/
+
+# ─── Editor / OS ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Auto-generated skill files ───────────────────────────────────────
+skills/
+
+# ─── Optional: backups left by editors / manual saves ─────────────────
+*.bak
+*.backup
+*~
+trade_journal_backup.json
