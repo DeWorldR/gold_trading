@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python --version)",
+      "PowerShell(py *)",
+      "WebSearch",
+      "WebFetch(domain:www.xs.com)",
+      "WebFetch(domain:www.litefinance.org)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(cd D:\\\\gold-trading; \\(Get-Content backtest_v2.py -Encoding UTF8 -Raw\\).Length)",
+      "PowerShell(Get-Content \"D:\\\\gold-trading\\\\gold_trading_agents.py\" | Select-String \"class TechnicalAnalystAgent\" | ForEach-Object { \"Line $\\($_.LineNumber\\): $\\($_.Line\\)\" })",
+      "PowerShell(Get-Content \"D:\\\\gold-trading\\\\gold_trading_agents.py\" | Select-String \"cycle_count|def info|class Agent|class Config|class Orchestrator\" | ForEach-Object { \"Line $\\($_.LineNumber\\): $\\($_.Line\\)\" })",
+      "Bash(cd /d D:\\\\gold-trading)",
+      "Bash(py -3.12 -c \"import ast; ast.parse\\(open\\('gold_trading_agents.py'\\).read\\(\\)\\); print\\('gold_trading_agents.py: OK'\\)\")",
+      "Bash(py -3.12 -c \"import ast; ast.parse\\(open\\('backtest_v2.py'\\).read\\(\\)\\); print\\('backtest_v2.py: OK'\\)\")",
+      "Bash(py -3.12 -c \"import ast; ast.parse\\(open\\('D:/gold-trading/gold_trading_agents.py'\\).read\\(\\)\\); print\\('gold_trading_agents.py: OK'\\)\")",
+      "Bash(py -3.12 -c \"import ast; ast.parse\\(open\\('D:/gold-trading/backtest_v2.py'\\).read\\(\\)\\); print\\('backtest_v2.py: OK'\\)\")",
+      "Bash(py *)",
+      "PowerShell(cd D:\\\\gold-trading; [System.IO.File]::ReadAllText\\(\"daily_summary.md\", [System.Text.Encoding]::UTF8\\) | Select-String \"Day 1\")",
+      "PowerShell(cd D:\\\\gold-trading; Write-Host \"--- cycle_log.jsonl lines ---\"; \\(Get-Content cycle_log.jsonl\\).Count; Write-Host \"--- daily_summary.md Day occurrences ---\"; \\(Get-Content daily_summary.md | Select-String \"^## Day\"\\).Count; Write-Host \"--- sessions/ files ---\"; \\(Get-ChildItem sessions\\\\\\).Name)",
+      "Bash(python *)",
+      "Bash(Select-String -Path \"D:\\\\gold-trading\\\\CLAUDE.md\" -Pattern \"v10\\\\.1\")",
+      "Bash(Select-Object -First 3)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(tee be_only_baseline.log)",
+      "Bash(tee htf_only.log)",
+      "Bash(tee be_htf.log)",
+      "Bash(Start-Sleep -Seconds 30)",
+      "Bash(Get-Content \"C:\\\\Users\\\\world\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--gold-trading\\\\852fbc20-675f-4bf3-bdc8-ff8bb52af844\\\\tasks\\\\bnx1789xc.output\")",
+      "Bash(Select-Object -First 10)"
+    ]
+  }
+}

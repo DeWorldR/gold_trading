@@ -1,0 +1,144 @@
+========================================================================
+  GOLD 1H BACKTEST v2  —  Improvements over v1:
+  [1] 1H interval  -> full year of data (730 days available)
+  [2] EMA200 trend filter -> no counter-trend trades
+  [3] Session filter 08:00-21:00 UTC -> liquid hours only
+  [4] R:R 2.0 (was 1.5) -> break-even drops from 40% to 33%
+  [5] RSI thresholds 35/65 (was 40/60) -> cleaner entries
+  [6] Max 2 consecutive losses/day -> drawdown protection
+  [7] BB width percentile filter (< 25.0th pct blocked)
+  [8] Spread/slippage model (2.5 pips / $0.25)
+  [9] Daily-equity-curve Sharpe (replaces per-trade Sharpe)
+  [10] Walk-forward split 70/30 train/val
+  [11] ADX(14) filter: EMA_MACD_TREND_SELL needs ADX >= 25
+  [12] BB_RSI lower confluence threshold (2/5)
+  [13] Monthly drawdown brake (halve lot when month P&L < -$150)
+  [BE] Breakeven move at +1.0R -> SL to entry +/- $0.50
+  Period: 2y (725 days)
+========================================================================
+
+Downloading GC=F 1H data (725 days)...
+Bars: 11,171  |  2024-06-05 to 2026-05-29
+
+Computing indicators...
+Running bar-by-bar simulation...
+
+  WARNING: ambiguous bar 2025-09-17 18:00 trade#72 — both SL (3697.75) and TP (3736.68) touched. Assuming SL exit (conservative).
+Filter breakdown:
+  volatile    : 165 bars skipped
+  session     : 3,188 bars skipped
+  daily       : 0 bars skipped
+  rr          : 0 bars skipped
+  trend       : 1,533 bars skipped
+  consec      : 7 bars skipped
+  bb_width    : 1,224 bars skipped
+  adx         : 1,258 bars skipped
+  ambiguous   : 1 bars — both SL+TP hit, SL assumed
+  be_moves    : 75 SL relocations to breakeven
+
+========================================================================
+  GOLD 1H BACKTEST v2 RESULTS
+  Data  : 2024-06-05  to  2026-05-29
+  R:R   : 2.0  |  Break-even win rate: 33.3%
+  Filters: EMA200 trend | Session 8:00-21:00 UTC | RSI 35/65
+========================================================================
+                    v1 (15m, 55d)    v2 (1H, 1yr)
+------------------  ---------------  ---------------
+Total trades        181              110
+Win rate            39.8%            67.3%
+Gross P&L           $-235.93         $+8,097.99
+Spread/slip cost    —                $259.65
+Net P&L             —                $+7,838.34
+Avg win             —                $171.29
+Avg loss            —                $140.93
+Profit factor       0.97             2.57
+Max drawdown        18.9%            4.7%
+Sharpe (daily eq.)  -0.99            2.89
+Final equity        —                $17,838.34
+Ambiguous bars      n/a              1 <- SL assumed
+
+========================================================================
+  DIRECTION BREAKDOWN
+========================================================================
+Dir      Trades    Wins  Win%    P&L
+-----  --------  ------  ------  ----------
+BUY         110      74  67%     $+7,838.34
+
+========================================================================
+  PATTERN BREAKDOWN
+========================================================================
+Pattern                Trades    Wins  Win%    Avg P&L    Total P&L
+-------------------  --------  ------  ------  ---------  -----------  --
+EMA_MACD_TREND_BUY         79      54  68%     $+68.35    $+5,399.33
+BB_RSI_REVERSAL_BUY        30      20  67%     $+83.40    $+2,501.86
+EMA_TREND_BUY               1       0  0%      $-62.85    $-62.85
+
+========================================================================
+  MONTHLY P&L
+========================================================================
+Month    P&L
+-------  ----------  ----------------------------------------
+2024-06  $-108.72    -------
+2024-07  $+488.84    ++++++++++++++++++++++++++++++++
+2024-08  $+508.06    +++++++++++++++++++++++++++++++++
+2024-09  $+207.75    +++++++++++++
+2024-10  $+330.75    ++++++++++++++++++++++
+2024-11  $+325.42    +++++++++++++++++++++
+2024-12  $-99.12     ------
+2025-01  $-238.69    ---------------
+2025-02  $+306.21    ++++++++++++++++++++
+2025-03  $+707.00    ++++++++++++++++++++++++++++++++++++++++
+2025-04  $+896.14    ++++++++++++++++++++++++++++++++++++++++
+2025-05  $+272.88    ++++++++++++++++++
+2025-06  $+144.60    +++++++++
+2025-07  $+242.31    ++++++++++++++++
+2025-08  $+559.36    +++++++++++++++++++++++++++++++++++++
+2025-09  $+1,358.75  ++++++++++++++++++++++++++++++++++++++++
+2025-10  $+1,685.09  ++++++++++++++++++++++++++++++++++++++++
+2025-11  $-17.58     -
+2025-12  $+173.05    +++++++++++
+2026-01  $+169.92    +++++++++++
+2026-02  $+385.80    +++++++++++++++++++++++++
+2026-03  $-225.68    ---------------
+2026-04  $-153.43    ----------
+2026-05  $-80.37     -----
+
+========================================================================
+  TOP 5 TRADES
+========================================================================
+  #  Open              Dir    Pattern              Entry     Exit      P&L       Status
+---  ----------------  -----  -------------------  --------  --------  --------  --------
+ 99  2026-02-24 13:00  BUY    BB_RSI_REVERSAL_BUY  $5132.55  $5260.90  $+387.30  WIN
+ 82  2025-10-13 11:00  BUY    EMA_MACD_TREND_BUY   $4093.45  $4187.74  $+380.16  WIN
+ 87  2025-11-10 14:00  BUY    EMA_MACD_TREND_BUY   $4091.65  $4162.42  $+357.60  WIN
+ 84  2025-10-17 16:00  BUY    BB_RSI_REVERSAL_BUY  $4217.05  $4394.18  $+355.76  WIN
+ 91  2025-11-25 10:00  BUY    EMA_MACD_TREND_BUY   $4165.55  $4282.44  $+352.92  WIN
+
+========================================================================
+  BOTTOM 5 TRADES
+========================================================================
+  #  Open              Dir    Pattern              Entry     Exit      P&L       Status
+---  ----------------  -----  -------------------  --------  --------  --------  --------
+102  2026-03-03 10:00  BUY    BB_RSI_REVERSAL_BUY  $5259.95  $5163.50  $-192.90  LOSS
+ 89  2025-11-14 11:00  BUY    BB_RSI_REVERSAL_BUY  $4135.85  $4085.37  $-201.92  LOSS
+ 92  2025-12-01 09:00  BUY    EMA_MACD_TREND_BUY   $4284.55  $4182.81  $-203.48  LOSS
+ 85  2025-10-20 19:00  BUY    EMA_MACD_TREND_BUY   $4394.55  $4326.65  $-203.70  LOSS
+103  2026-03-12 12:00  BUY    EMA_MACD_TREND_BUY   $5187.95  $5135.81  $-208.56  LOSS
+
+
+========================================================================
+  WALK-FORWARD VALIDATION  (70% train / 30% out-of-sample)
+  Split point: 2025-09-30 18:00
+========================================================================
+               TRAIN       VAL (OOS)
+-------------  ----------  -----------
+Trades         77          33
+Win rate       71.4%       57.6%
+Net P&L        $+5,901.54  $+1,936.80
+Profit factor  3.20        1.82
+Max DD         4.3%        6.9%
+Sharpe         7.70        4.75
+
+Walk-forward OK — val Sharpe within acceptable range of train Sharpe.
+
+Results saved to backtest_v2_results_be.json

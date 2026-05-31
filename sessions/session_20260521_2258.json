@@ -1,0 +1,35 @@
+{
+  "session_start": "2026-05-21T22:58:18Z",
+  "session_end": "2026-05-21T22:58:41Z",
+  "duration_minutes": 0,
+  "config": {
+    "atr_stop_mult": 2.5,
+    "rsi_ceiling_buy": 70,
+    "adx_threshold": 25,
+    "max_open_positions": 1,
+    "min_rr": 2.0,
+    "risk_per_trade_pct": 0.5,
+    "daily_loss_limit": 150.0,
+    "disabled_patterns": [
+      "EMA_MACD_TREND_SELL",
+      "BB_RSI_REVERSAL_SELL"
+    ],
+    "mt5_symbol": "GOLD#"
+  },
+  "stats": {
+    "cycles_total": 1,
+    "trades_opened": 0,
+    "trades_closed": 0,
+    "errors": 0,
+    "mt5_disconnects": 0
+  },
+  "final_state": {
+    "balance": 10107.82,
+    "equity": 10107.82,
+    "open_positions": 0,
+    "daily_loss": 0,
+    "monthly_pnl": 107.82
+  },
+  "open_position_ids": [],
+  "last_market_state": {}
+}
