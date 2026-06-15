@@ -4,6 +4,38 @@ Automated XAUUSD (Gold) trading bot for XM broker's MT5 platform.
 Runs every 15 minutes Mon–Fri UTC, paper-trades by default.
 **Python 3.12 required** (`pandas_ta` requires numba, which does not support 3.14+).
 
+---
+
+## ⚠ TRADE PHASE — IN EFFECT (since 2026-06-14)
+
+**v12 is frozen as deployable.** Build phase officially closed after 3 consecutive
+improvement attempts hit the local maximum (v8 EMA slope reverted, v13 bear-SELL
+failed gate, v13 Partial TP failed gate). The system has reached the ceiling at
+this complexity level for this timeframe + data combination.
+
+**Read before any change:**
+- `TRADE_PHASE_PLAN.md` — 6-month playbook with milestones
+- `PRE_DEPLOYMENT_CHECKLIST.md` — run before every restart
+- `EMERGENCY_PROCEDURES.md` — when things go wrong
+
+**Allowed during trade phase:**
+- `.env` parameter tuning (RISK_PER_TRADE_PCT, DAILY_LOSS_LIMIT, etc.)
+- Bug fixes (crash, MT5 disconnect, log corruption)
+- Documentation updates
+- Bundle B research (MT5 history recalibration) — research only
+
+**NOT allowed during trade phase:**
+- Code changes to `gold_trading_agents.py`, `backtest_v2.py`, `logger.py`
+- Flipping `BEAR_REGIME_ENABLED` or `PARTIAL_TP_ENABLED` to true
+- "One small improvement" — see TRADE_PHASE_PLAN.md decision tree
+
+**Trade phase exits when:**
+- 100 closed live trades accumulated AND review at Milestone 4 done, OR
+- Catastrophic failure documented in `INCIDENT_LOG_*.md`, OR
+- 6 months elapsed (whichever first)
+
+---
+
 ## Files
 
 | File | Purpose |
@@ -11,6 +43,12 @@ Runs every 15 minutes Mon–Fri UTC, paper-trades by default.
 | `gold_trading_agents.py` | All logic — 7 agents + scheduler + CLI |
 | `backtest_v2.py` | 1H bar walk-forward backtest (1 year of GC=F data) |
 | `backtest.py` | Original 15m backtest (v1, kept for reference) |
+| `TRADE_PHASE_PLAN.md` | 6-month live trading playbook with milestones |
+| `PRE_DEPLOYMENT_CHECKLIST.md` | Go/no-go list before every bot restart |
+| `EMERGENCY_PROCEDURES.md` | Stop, revert, manual close, recovery procedures |
+| `VERIFY_HTF.md` / `VERIFY_DATA_HYGIENE.md` / `VERIFY_BEAR.md` / `VERIFY_PARTIAL_TP.md` | Backtest verification prompts for each candidate change |
+| `PARTIAL_TP_VALIDATION.md` | Validation report — Partial TP failed gate (kept off) |
+| `FAILURE_BEAR.md` / `FAILURE_PARTIAL.md` | Failure analysis when deploy gates rejected v13 candidates |
 | `requirements.txt` | Python dependencies |
 | `.env.example` | Template for secrets (copy to `.env`) |
 | `trade_journal.json` | Auto-created; persistent trade log |
